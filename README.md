@@ -10,45 +10,43 @@ The dataset contains features such as age, education level, employment type, wor
 - Addressing class imbalance (~75% earn <= $50K, ~25% earn > $50K).
 - Feature selection methods were applied to reduce dimensionality.
 
-## Models Used
+## Models used
 To tackle this binary classification problem, several machine learning models were considered:
-- **Linear Support Vector Machine (SVM)** - A linear classification approach.
-- **Random Forest Classifier** - A non-linear approach leveraging ensemble learning.
+- **Linear support Vector Machine (SVM)** - A linear classification approach.
+- **Random forest classifier** - A non-linear approach leveraging ensemble learning.
 
-## Feature Engineering
+## Feature engineering
 Feature selection was performed using both:
-- **Forward Sequential Feature Selection**: Starts with no features and adds them one by one based on performance.
-- **Backward Sequential Feature Selection**: Starts with all features and removes the least important ones iteratively.
+- **Forward sequential feature selection**: Starts with no features and adds them one by one based on performance.
+- **Backward sequential feature selection**: Starts with all features and removes the least important ones iteratively.
 
-### Features Kept After Selection
-- **SVM (Forward Selection)**: 17 features including age, schooling, gains, losses, working time, and employment type.
-- **SVM (Backward Selection)**: 96 features kept; 4 features removed.
-- **Random Forest (Forward Selection)**: 8 features including age, schooling, marital status, and employment area.
-- **Random Forest (Backward Selection)**: 95 features kept; 5 features removed.
+### Features kept after selection
+- **SVM (forward selection)**: 17 features including age, schooling, gains, losses, working time, and employment type.
+- **SVM (backward selection)**: 96 features kept; 4 features removed.
+- **Random Forest (forward selection)**: 8 features including age, schooling, marital status, and employment area.
+- **Random Forest (backward selection)**: 95 features kept; 5 features removed.
 
-## Model Evaluation
+## Model evaluation
 Performance was assessed using:
 - **Accuracy**
-- **ROC AUC Score** (Alternative measure of risk)
+- **ROC AUC score** (Alternative measure of risk)
 - **Stratified K-Fold Cross-Validation** to maintain class balance across folds.
-- **Confusion Matrix** to analyze classification performance.
+- **Confusion matrix** to analyze classification performance.
 
-Best model: **Random Forest Classifier with Backward Feature Selection**
+Best model: **Random forest classifier with backward feature selection**
 - Achieved highest test accuracy and ROC AUC scores across multiple folds.
 
-## Hyperparameter Tuning
+## Hyperparameter tuning
 Hyperparameters were tuned using **GridSearchCV** with custom refitting:
-- **SVM Best Parameters**: 
+- **SVM best parameters**: 
   - `C = 0.1`, `penalty = l1`, `loss = squared_hinge`, `dual = False`, `max_iter = 1,000,000`
-- **Random Forest Best Parameters**:
+- **Random forest best parameters**:
   - `criterion = entropy`, `max_depth = None`, `max_features = sqrt`, `min_samples_leaf = 3`, `n_estimators = 500`
 
 ## Findings
-- **Class Imbalance Issue**: Model predictions tend to favor the majority class (<=50K income), potentially affecting precision for the minority class.
-- **Feature Importance**: Employment type and marital status were crucial predictors.
-- **Random Forest with Backward Selection** provided the best overall results.
+- **Random forest with backward selection** provided the best overall results.
 
-## Future Improvements
-- Experiment with different balancing techniques (e.g., SMOTE, weighted loss functions).
-- Try additional classifiers like Gradient Boosting or Neural Networks.
+## Future improvements
+- Experiment with different balancing techniques.
+- Try additional classifiers Neural Networks.
 - Implement a more robust nested cross-validation approach.
