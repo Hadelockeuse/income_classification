@@ -44,7 +44,7 @@ Hyperparameters were tuned using **GridSearchCV** with custom refitting:
   - `criterion = entropy`, `max_depth = None`, `max_features = sqrt`, `min_samples_leaf = 3`, `n_estimators = 500`
 
 ## Findings
-- **Random forest with backward selection** provided the best overall results.
+- **Random forest with backward selection** provided the best overall results. It achieved 88.6% accuracy and 91.1% ROC-AUC.
 
 ## Future improvements
 - Experiment with different balancing techniques.
